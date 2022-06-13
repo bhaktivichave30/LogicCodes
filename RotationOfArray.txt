@@ -1,0 +1,73 @@
+/* Rotation of the array to the right K times.
+Input:
+The first line will consists of one integer T denoting the number of test cases.
+For each test case:
+1) The first line consists of two integers N and K, N being the number of elements in the array and K denotes the number of steps of rotation.
+2) The next line consists of N space separated integers , denoting the elements of the array A.
+
+Output:
+Print the required array.
+Sample Input
+1
+5 2
+1 2 3 4 5
+Sample Output
+4 5 1 2 3
+*/
+
+----------------------------------------------------------------------------------------------------------------
+
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Rotation1 {
+    public static void rightRotate(int array[], int rotation, int size) {
+
+        for (int l = 0; l < rotation; l++) {
+            int last = array[array.length - 1];
+
+            for (int m = size - 2; m >= 0; m--) {
+
+                array[m + 1] = array[m];
+            }
+
+            array[0] = last;
+
+        }
+
+        System.out.print(Arrays.toString(array).replace("[", "").replace(",", "").replace("]", ""));
+
+    }
+
+    public static void main(String args[]) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the no. of test cases: ");
+        int testCases = sc.nextInt();
+
+        while (testCases != 0) {
+            System.out.println("Enter size of the array and no. of rotation: ");
+            int size = sc.nextInt();
+            int rotation = sc.nextInt();
+
+            // this will eat the new line and move forward for other inputs.
+            sc.nextLine();
+
+            String input = sc.nextLine();
+            String[] numbers = input.split(" ");
+
+            int array[] = new int[numbers.length];
+            for (int i = 0; i < numbers.length; i++) {
+                array[i] = Integer.parseInt(numbers[i]);
+            }
+
+            // printng the array before rotation
+
+            rightRotate(array, rotation, size);
+            System.out.println(" ");
+            testCases--;
+        }
+    }
+
+}
